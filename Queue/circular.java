@@ -1,21 +1,23 @@
-public class implementation_array {
+public class circular {
     static class Queue {
         static int arr[];
         static int size;
         static int rear;
+        static int front;
   
         Queue(int size) {
             this.size = size;
             arr = new int[size];
             rear = -1;
+            front = -1;
         }
   
         public static boolean isEmpty() {
-            return rear == -1;
+            return rear == -1 && front == -1;
         }
   
         public static boolean isFull() {
-            return rear == size-1;
+            return (rear+1)%size == size;
         }
   
         public static void add(int data) {
@@ -23,22 +25,27 @@ public class implementation_array {
                 System.out.println("Overflow");
                 return;
             }
-  
-            arr[++rear] = data;
+            if(front == -1)
+                front = 0;
+            rear = (rear+1)%size;
+            arr[rear] = data;
         }
   
-        //O(n)
+        
         public static int remove() {
             if(isEmpty()) {
                 System.out.println("empty queue");
                 return -1;
             }
-            int front = arr[0];
-            for(int i=0; i<rear; i++) {
-                arr[i] = arr[i+1];
-            }
-          rear--;	
-            return front;
+            int result = arr[front];
+
+            if (front == rear)
+                front = rear = -1;
+            
+            else
+                front = (front+1)%size;
+
+            return result;
         }
   
         public static int peek() {
@@ -47,7 +54,7 @@ public class implementation_array {
                 return -1;
             }
            
-            return arr[0];
+            return arr[front];
         }
     }
     public static void main(String args[]) {
@@ -55,9 +62,12 @@ public class implementation_array {
         q.add(1);
         q.add(2);
         q.add(3);
+        q.add(4);
+        q.add(5);
+        q.remove();
+        q.add(6);
+        while(!q.isEmpty())
         System.out.println(q.remove());
-        System.out.println(q.peek());
+        
     }
- }
-  
- 
+}

@@ -1,4 +1,3 @@
-//package Stacks;
 public class implementation_ll{
     static class Node{
         int data;
