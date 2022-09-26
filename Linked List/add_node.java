@@ -87,6 +87,27 @@ public class add_node {
             current.next = null;
         }
 
+        static void delete_node(int pos){
+            if (head == null) {
+                System.out.println("Empty list");
+                return;
+            }
+            if(pos==1){
+                head=head.next;
+                return;
+            }
+            int counter=1;
+            Node current = head;
+            while((counter+1)!=pos){
+                counter++;                
+                current=current.next;
+            }
+            
+            current.next=current.next.next;
+                
+
+        }
+
     }
 
     public static void main(String[] args) {
@@ -99,6 +120,7 @@ public class add_node {
         list.add_node(10, 3);
         list.delete_first();
         list.delete_last();
+        list.delete_node(2);
         list.print();
     }
 }
