@@ -26,13 +26,28 @@ public class add_node {
             Node newNode = new Node(data);
             newNode.next = head;
             head = newNode;
+        }
+
+        static void add_last(int data) {
+            Node newNode = new Node(data);
+
+            if (head == null) {
+                head = newNode;
+                return;
+            }
+
+            Node current = head;
+            while (current.next != null) {
+                current = current.next;
+            }
+            current.next = newNode;
 
         }
 
         static void add_node(int data, int pos) {
-            
+
             Node val = new Node(data);
-            if(pos==1){
+            if (pos == 1) {
                 val.next = head;
                 head = val;
                 return;
@@ -46,6 +61,32 @@ public class add_node {
             current.next = val;
 
         }
+
+        static void delete_first(){
+            if (head == null) {
+                System.out.println("Empty list");
+                return;
+            }
+            head=head.next;
+        }
+
+        static void delete_last() {
+            if (head == null) {
+                System.out.println("Empty list");
+                return;
+            }
+            if (head.next == null) {
+                head = null;
+                return;
+            }
+
+            Node current = head;
+            while (current.next.next != null) {
+                current = current.next;
+            }
+            current.next = null;
+        }
+
     }
 
     public static void main(String[] args) {
@@ -54,7 +95,10 @@ public class add_node {
         list.add_first(3);
         list.add_first(2);
         list.add_first(1);
+        list.add_last(5);
         list.add_node(10, 3);
+        list.delete_first();
+        list.delete_last();
         list.print();
     }
 }
