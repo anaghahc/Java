@@ -62,12 +62,12 @@ public class add_node {
 
         }
 
-        static void delete_first(){
+        static void delete_first() {
             if (head == null) {
                 System.out.println("Empty list");
                 return;
             }
-            head=head.next;
+            head = head.next;
         }
 
         static void delete_last() {
@@ -87,24 +87,23 @@ public class add_node {
             current.next = null;
         }
 
-        static void delete_node(int pos){
+        static void delete_node(int pos) {
             if (head == null) {
                 System.out.println("Empty list");
                 return;
             }
-            if(pos==1){
-                head=head.next;
+            if (pos == 1) {
+                head = head.next;
                 return;
             }
-            int counter=1;
+            int counter = 1;
             Node current = head;
-            while((counter+1)!=pos){
-                counter++;                
-                current=current.next;
+            while ((counter + 1) != pos) {
+                counter++;
+                current = current.next;
             }
-            
-            current.next=current.next.next;
-                
+
+            current.next = current.next.next;
 
         }
 
