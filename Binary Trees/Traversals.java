@@ -1,3 +1,5 @@
+import java.util.*;
+
 public class Traversals {
     static class Node {
 
@@ -59,7 +61,32 @@ public class Traversals {
         printPostorder(root.left);
         printPostorder(root.right);
         System.out.print(root.data + " ");
+    }
 
+    public static void printLevelorder(Node root) {
+        if (root == null) {
+            return;
+        }
+        Queue<Node> queue = new LinkedList<>();
+        queue.add(root);
+        queue.add(null);
+
+        while (!queue.isEmpty()) {
+            Node current = queue.remove();
+            if (current == null) {
+                System.out.println();
+                if (queue.isEmpty())
+                    break;
+                else
+                    queue.add(null);
+            } else {
+                System.out.print(current.data + " ");
+                if (current.left != null)
+                    queue.add(current.left);
+                if (current.right != null)
+                    queue.add(current.right);
+            }
+        }
     }
 
     public static void main(String[] args) {
@@ -72,5 +99,7 @@ public class Traversals {
         printInorder(root);
         System.out.println();
         printPostorder(root);
+        System.out.println();
+        printLevelorder(root);
     }
 }
